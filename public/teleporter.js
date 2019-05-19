@@ -1,5 +1,5 @@
-var latPrevious = "null";
-var longPrevious = "null";
+var latPrevious = "";
+var longPrevious = "";
 
 async function teleportGet() {
   try {
@@ -7,11 +7,12 @@ async function teleportGet() {
     let enabled = response.data.enabled;
     let longitude = response.data.longitude;
     let latitude = response.data.latitude;
-    if(enabled == "true" && longitude !== "null" && latitude !== "null") {
+    console.log(response.data);
+    if(enabled == "true" && !longitude && !latitude) {
       document.getElementById('publicScreen').style.display = "none";
       document.getElementById('loadingPrompt').style.display = "block";
       document.getElementById('street-view').style.display = "none";
-    } else if(enabled == "true" && longitude !== "null" && latitude !== "null" && (latPrevious !== latitude) && (longPrevious !== longitude)) {
+    } else if(enabled == "true" && longitude && latitude && (latPrevious !== latitude) && (longPrevious !== longitude)) {
       latPrevious = latitude;
       longPrevious = longitude;
       panorama.setPosition(new google.maps.LatLng(parseFloat(latitude), parseFloat(longitude)));
@@ -22,15 +23,16 @@ async function teleportGet() {
       document.getElementById('publicScreen').style.display = "block";
       document.getElementById('loadingPrompt').style.display = "none";
       document.getElementById('street-view').style.display = "none";
-      longitude = "null";
-      latitude = "null";
+      longitude = "";
+      latitude = "";
     }
-    setInterval(teleportGet, 5000);
+    //setInterval(teleportGet, 5000);
   } catch (error) {
+    console.log(error)
     console.log("Error has occured with teleporting fetching.");
   }
 }
-setInterval(teleportGet, 5000);
+setInterval(teleportGet, 4000);
 
 // From: https://gist.github.com/demonixis/5188326
 /**

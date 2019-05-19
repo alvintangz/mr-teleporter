@@ -33,7 +33,7 @@ app.post('/api/enable', (req,res)=>{
 
 app.post('/api/disable', (req,res)=>{
     let query = `UPDATE take_me_to SET enabled = ?, latitude = ?, longitude = ?`;
-    let data = ['false', 'null', 'null']
+    let data = ['false', '', '']
     db.run(query, data, (err)=>{
         if (err){
             return console.error(err.message);
