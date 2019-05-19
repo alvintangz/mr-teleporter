@@ -1,0 +1,73 @@
+<!doctype html>
+<html>
+    <head>
+    	<meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    	<title>Mr. Teleporter - Virtual Reality 360</title>
+      	<link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css" rel="stylesheet" />
+        <style>
+			html, body {
+        		height: 100%;
+        		margin: 0;
+        		padding: 0;
+        		overflow: hidden;
+      		}
+
+      		#screen, #loadingPrompt {
+      			height: 100%;
+      			width: 100%;
+      		}
+
+      		#street-view {
+        		height: 100%;
+      		}
+      	</style>
+    </head>
+    <body>
+    	<div id="screen" class="hero is-success is-fullheight">
+  			<div class="hero-body">
+    			<div class="container has-text-centered">
+    				<img src="icon.jpg" style="height:100px;width:100px" />
+      				<h1 class="title">
+        				Mr. Teleporter
+      				</h1>
+      				<h2 class="subtitle">
+        				<em>"Hey Google, let me talk to Mr. Teleporter."</em>
+      				</h2>
+      				<button onClick="toggleFullscreen()" class="button is-rounded is-success">Full Screen Toggle</button>
+    			</div>
+  			</div>
+    	</div>
+    	<div id="loadingPrompt" class="hero is-warning is-fullheight" style="display:none">
+  			<div class="hero-body">
+    			<div class="container has-text-centered">
+    				<img src="icon-warn.jpg" style="height:100px;width:100px" />
+      				<h1 class="title">
+        				Mr. Teleporter
+      				</h1>
+      				<h2 class="subtitle">
+        				<em>"Teleport me to France"</em>
+      				</h2>
+      				<button onClick="toggleFullscreen()" class="button is-rounded is-warning">Full Screen Toggle</button>
+    			</div>
+  			</div>
+    	</div>
+        <div id="street-view" style="display:none">
+        </div>
+        <script>
+      	var panorama;
+      	function initialize() {
+        	panorama = new google.maps.StreetViewPanorama(document.getElementById('street-view'), {
+              	pov: {heading: 165, pitch: 0},
+              	linksControl: false,
+        		panControl: false,
+        		enableCloseButton: false
+            });
+      	}
+        </script>
+     	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDREz7hHVEKem4yrgn6P7FOhJJO1mAwbVE&callback=initialize">
+    	</script>
+    	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    	<script src="teleporter.js"></script>
+    </body>
+</html>
