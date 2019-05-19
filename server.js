@@ -15,10 +15,6 @@ let db = new sqlite3.Database('./chinook.db', (err)=>{
 /** end database init */
 
 /** api routes */
-app.get('/', function(req, res){
-    res.send('hello world boi');
-  });
-
 app.post('/api/enable', (req,res)=>{
     let query = `UPDATE take_me_to SET enabled = ?`;
     let data = ['true']
