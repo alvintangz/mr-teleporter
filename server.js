@@ -1,5 +1,7 @@
 const https = require('https');
 const express = require('express');
+const normalizePort = require('normalize-port');
+
 var app = express();
 const JSON = require('JSON');
 
@@ -82,4 +84,6 @@ app.put('/api/new-place/:location', async (req, res)=>{
     
 })
 /** end api routes */
-app.listen(3000);
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port)
+// app.listen(port);
