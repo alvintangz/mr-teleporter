@@ -10,7 +10,7 @@ async function teleportGet() {
     console.log(response.data);
     if(enabled == "true" && !longitude && !latitude) {
       document.getElementById('publicScreen').style.display = "none";
-      document.getElementById('loadingPrompt').style.display = "block";
+      document.getElementById('loadingPrompt').style.display = "flex";
       document.getElementById('street-view').style.display = "none";
     } else if(enabled == "true" && longitude && latitude && (latPrevious !== latitude) && (longPrevious !== longitude)) {
       latPrevious = latitude;
@@ -19,8 +19,9 @@ async function teleportGet() {
       document.getElementById('publicScreen').style.display = "none";
       document.getElementById('loadingPrompt').style.display = "none";
       document.getElementById('street-view').style.display = "block";
+      console.log("hello");
     } else if (enabled == "false") {
-      document.getElementById('publicScreen').style.display = "block";
+      document.getElementById('publicScreen').style.display = "flex";
       document.getElementById('loadingPrompt').style.display = "none";
       document.getElementById('street-view').style.display = "none";
       longitude = "";
